@@ -9,6 +9,8 @@ import 'package:bla/ui/widgets/display/bla_divider.dart';
 import 'package:bla/ui/widgets/inputs/bla_date.dart';
 import 'package:bla/ui/widgets/inputs/bla_location_input.dart';
 import 'package:bla/ui/widgets/inputs/bla_seat_input.dart';
+import 'package:bla/ui/widgets/display/bla_location_picker.dart';
+import 'package:bla/utils/animations_util.dart';
 
 ///
 /// A Ride Preference From is a view to select:
