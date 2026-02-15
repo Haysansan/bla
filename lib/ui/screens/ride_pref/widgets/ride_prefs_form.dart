@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../model/ride/locations.dart';
 import '../../../../model/ride_pref/ride_pref.dart';
+import 'package:bla/ui/theme/theme.dart';
+import 'package:bla/ui/widgets/actions/bla_button.dart';
+import 'package:bla/ui/widgets/actions/bla_switch_button.dart';
+import 'package:bla/ui/widgets/display/bla_divider.dart';
+import 'package:bla/ui/widgets/inputs/bla_date.dart';
+import 'package:bla/ui/widgets/inputs/bla_location_input.dart';
+import 'package:bla/ui/widgets/inputs/bla_seat_input.dart';
 
 ///
 /// A Ride Preference From is a view to select:
@@ -36,26 +43,76 @@ class _RidePrefFormState extends State<RidePrefForm> {
   void initState() {
     super.initState();
     // TODO
+
+    departure = widget.initRidePref?.departure;
+    arrival = widget.initRidePref?.arrival;
+    departureDate = DateTime.now();
+    requestedSeats = 1;
   }
 
   // ----------------------------------
   // Handle events
   // ----------------------------------
-
+  void onSwitch() {
+    Location? temp = departure;
+    setState(() {
+      departure = arrival;
+      arrival = temp;
+    });
+  }
   // ----------------------------------
   // Compute the widgets rendering
   // ----------------------------------
-
+  bool get isFormValid {
+    return departure != null && arrival != null && departure != arrival;
+  }
   // ----------------------------------
   // Build the widgets
   // ----------------------------------
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [ 
-        
-        ]);
+    return Padding(
+      padding: const EdgeInsets.all(BlaSpacings.m),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+ children: [
+          // Departure
+          BlaLocationInput(
+            location: departure,
+            type: LocationType.departure,
+            onTap: () {},
+          ),
+
+          BlaDivider(),
+
+          // Arrival
+          BlaLocationInput(
+            location: arrival,
+            type: LocationType.arrival,
+            switchIcon: BlaSwitchButton(onTap: onSwitch),
+            onTap: () {},
+          ),
+
+          BlaDivider(),
+
+          // Date
+          BlaDateTile(date: departureDate, onTap: () {}),
+
+          BlaDivider(),
+
+          // Seats
+          BlaSeatInput(passengerAmount: requestedSeats, onTap: () {}),
+
+          BlaDivider(),
+
+          // Search button
+          BlaButton(
+            label: 'Search',
+            type: ButtonType.primary,
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
   }
 }
