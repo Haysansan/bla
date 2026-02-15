@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import '../../../../model/ride_pref/ride_pref.dart';
 
 class RidePrefsTile extends StatelessWidget {
-  const RidePrefsTile({super.key, required this.ridePref, this.onPressed});
+  const RidePrefsTile({super.key, required this.ridePref, this.onTap});
 
   final RidePref ridePref;
-  final VoidCallback? onPressed;
+  final VoidCallback? onTap;
 
   String get title => "${ridePref.departure.name} → ${ridePref.arrival.name}";
 
@@ -18,6 +18,7 @@ class RidePrefsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: Icon(Icons.history, color: BlaColors.iconLight),
 
       title: Text(title, style: BlaTextStyles.body),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../model/ride_pref/ride_pref.dart';
-import '../../services/ride_prefs_service.dart';
+import '../../../model/ride_pref/ride_pref.dart';
+import '../../../services/ride_prefs_service.dart';
 import '../../theme/theme.dart';
 
-import 'widgets/ride_pref_form.dart';
-import 'widgets/ride_pref_history_tile.dart';
+import 'widgets/ride_prefs_form.dart';
+import 'widgets/ride_prefs_tile.dart';
 
 const String blablaHomeImagePath = 'assets/images/blabla_home.png';
 
@@ -72,7 +72,7 @@ class _RidePrefScreenState extends State<RidePrefScreen> {
                   shrinkWrap: true, // Fix ListView height issue
                   physics: AlwaysScrollableScrollPhysics(),
                   itemCount: RidePrefService.ridePrefsHistory.length,
-                  itemBuilder: (ctx, index) => RidePrefHistoryTile(
+                  itemBuilder: (ctx, index) => RidePrefsTile(
                     ridePref: RidePrefService.ridePrefsHistory[index],
                     onTap: () => onRidePrefSelected(
                       RidePrefService.ridePrefsHistory[index],

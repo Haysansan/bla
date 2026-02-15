@@ -16,7 +16,7 @@ class BlaBlaApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: blaTheme,
-      home: Scaffold(body: RidePrefsScreen()),
+      home: Scaffold(body: RidePrefScreen()),
     );
   }
 }
